@@ -74,6 +74,21 @@ export class AlunosComponent implements OnInit, OnDestroy {
     });
   }
 
+  trocarEstado(aluno: Aluno) {
+    this.alunoService.trocarEstado(aluno.id, !aluno.ativo)
+      .pipe(takeUntil(this.unsubscriber))
+      .subscribe(
+        (resp) => {
+          this.carregarAlunos();
+          this.toastr.success('Aluno salvo com sucesso!');
+        }, (error: any) => {
+          this.toastr.error(`Erro: Aluno não pode ser salvo!`);
+          console.error(error);
+          this.spinner.hide()
+        }, () => this.spinner.hide()
+      );
+  }
+
   saveAluno() {
     if (this.alunoForm.valid) {
       this.spinner.show();
@@ -114,7 +129,6 @@ export class AlunosComponent implements OnInit, OnDestroy {
         }
 
         this.toastr.success('Alunos foram carregado com Sucesso!');
-        console.log(alunos);
       }, (error: any) => {
         this.toastr.error('Alunos não carregados!');
         console.error(error);

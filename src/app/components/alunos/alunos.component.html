@@ -58,8 +58,8 @@
                 class="btn btn-sm btn-outline-primary">Professores</button>
               <button
                 class="btn btn-sm"
-                [ngClass]="{'btn-outline-danger': aluno.ativo, 'btn-outline-success': !aluno.ativo}"
-              >
+                [ngClass]="{'btn-outline-danger': aluno.ativo, 'btn-success': !aluno.ativo}"
+                (click)="trocarEstado(aluno)">
                 {{ aluno.ativo ? 'Desativar' : 'Ativar'}}
               </button>
             </div>
