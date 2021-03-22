@@ -5,10 +5,13 @@ import { AlunosComponent } from './components/alunos/alunos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { ProfessoresComponent } from './components/professores/professores.component';
+import { ProfessorDetalheComponent } from './components/professores/professor-detalhe/professor-detalhe.component';
 
 const routes: Routes = [
   { path: 'alunos', component: AlunosComponent },
+  { path: 'alunos/:id', component: AlunosComponent },
   { path: 'professores', component: ProfessoresComponent },
+  { path: 'professor/:id', component: ProfessorDetalheComponent },
   { path: 'sobre', component: SobreComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
