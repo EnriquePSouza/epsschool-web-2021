@@ -21,12 +21,14 @@
         <thead class="thead-light">
           <th>#</th>
           <th>Nome</th>
+          <th>Curso</th>
           <th scope="col">Opções</th>
         </thead>
         <tbody>
           <tr *ngFor="let disciplina of professorSelecionado.disciplinas">
             <td>{{disciplina.id}}</td>
             <td>{{disciplina.nome}}</td>
+            <td>TODO - Carregar o curso aqui...</td>
             <td>
               <div class="btn-group">
                 <button (click)="openModal(template, disciplina.id)" class="btn btn-sm btn-outline-primary">alunos</button>
