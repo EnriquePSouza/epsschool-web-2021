@@ -22,6 +22,7 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
   public titulo = 'Professores';
   public professorSelecionado: Professor;
   private unsubscriber = new Subject();
+  public contains = '';
 
   public professores: Professor[];
 
@@ -36,6 +37,9 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
     this.professorService.getAll()
       .pipe(takeUntil(this.unsubscriber))
       .subscribe((professores: Professor[]) => {
+        professores.forEach(p => {
+          p.allProfDisciplinas = this.disciplinaConcat(p.disciplinas);
+        });
         this.professores = professores;
         this.toastr.success('Professores foram carregado com Sucesso!');
       }, (error: any) => {

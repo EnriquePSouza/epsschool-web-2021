@@ -60,7 +60,6 @@ export class AlunosComponent implements OnInit, OnDestroy {
       .subscribe((professores: Professor[]) => {
         this.profsAlunos = professores;
         this.modalRef = this.modalService.show(template);
-        console.log(professores);
       }, (error: any) => {
         this.toastr.error(`erro: ${error.message}`);
         console.error(error.message);
