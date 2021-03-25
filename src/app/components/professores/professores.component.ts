@@ -59,6 +59,6 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
   }
 
   disciplinaConcat(disciplinas: Disciplina[]) {
-    return Util.nomeConcat(disciplinas);
+    return Util.nomeConcat(Util.removeDuplicate(disciplinas));
   }
 }

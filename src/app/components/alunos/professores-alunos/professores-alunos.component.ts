@@ -21,7 +21,7 @@ export class ProfessoresAlunosComponent implements OnInit {
   }
 
   disciplinaConcat(disciplinas: Disciplina[]) {
-    return Util.nomeConcat(disciplinas);
+    return Util.nomeConcat(Util.removeDuplicate(disciplinas));
   }
 
   professorSelect(prof: Professor) {
