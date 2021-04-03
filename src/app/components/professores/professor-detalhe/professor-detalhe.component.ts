@@ -33,8 +33,8 @@ export class ProfessorDetalheComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService
   ) { }
 
-  openModal(template: TemplateRef<any>, alunoId: number) {
-    this.alunosProfessores(template, alunoId);
+  openModal(template: TemplateRef<any>, courseId: number) {
+    this.alunosProfessores(template, courseId);
   }
 
   closeModal() {
@@ -43,7 +43,7 @@ export class ProfessorDetalheComponent implements OnInit, OnDestroy {
 
   alunosProfessores(template: TemplateRef<any>, id: number) {
     this.spinner.show();
-    this.alunoService.getByDisciplinaId(id)
+    this.alunoService.getByCourseId(id)
       .pipe(takeUntil(this.unsubscriber))
       .subscribe((alunos: Aluno[]) => {
         this.alunosProfs = alunos;

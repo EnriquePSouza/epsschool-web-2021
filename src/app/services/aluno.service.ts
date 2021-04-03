@@ -43,8 +43,8 @@ export class AlunoService {
     return this.http.get<Aluno>(`${this.baseURL}/${id}`);
   }
 
-  getByDisciplinaId(id: number): Observable<Aluno[]> {
-    return this.http.get<Aluno[]>(`${this.baseURL}/ByDisciplina/${id}`);
+  getByCourseId(id: number): Observable<Aluno[]> {
+    return this.http.get<Aluno[]>(`${this.baseURL}/ByCourse/${id}`);
   }
 
   post(aluno: Aluno) {
