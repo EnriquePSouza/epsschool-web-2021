@@ -1,5 +1,8 @@
+import { CoursesSubjects } from './CoursesSubjects';
+
 export class Disciplina {
+  coursesSubjects: CoursesSubjects[];
   id: number;
-  nome: string;
-  professorId: number;
+  name: string;
+  teacherId: number;
 }

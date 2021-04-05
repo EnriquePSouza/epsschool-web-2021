@@ -13,28 +13,29 @@
   <form *ngIf="professorSelecionado">
     <div class="form-group">
       <label for="formGroupExampleInput">Nome</label>
-      <input type="text" value="{{professorSelecionado.nome}}"  class="form-control">
+      <input type="text" value="{{professorSelecionado.name}}"  class="form-control">
     </div>
     <div class="form-group">
-      <label for="formGroupExampleInput2">Disciplina</label>
+      <label for="formGroupExampleInput">Disciplina</label>
+      <input type="text" value="{{professorSelecionado.profSubjectName}}"  class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Cursos</label>
       <table class="table table-hover">
         <thead class="thead-light">
           <th>#</th>
           <th>Nome</th>
-          <th>Curso - TODO - Carregar o curso aqui...</th>
           <th scope="col">Opções</th>
         </thead>
         <tbody>
-          <tr *ngFor="let disciplina of professorSelecionado.disciplinas">
-            <td>{{disciplina.id}}</td>
-            <td>{{disciplina.nome}}</td>
-            <td>TODO - Carregar o curso aqui...</td>
+          <tr *ngFor="let courseSubject of courseSubjects">
+            <td>{{courseSubject.course.id}}</td>
+            <td>{{courseSubject.course.name}}</td>
             <td>
               <div class="btn-group">
-                <button (click)="openModal(template, disciplina.id)" class="btn btn-sm btn-outline-primary">alunos</button>
+                <button (click)="openModal(template, courseSubject.course.id)" class="btn btn-sm btn-outline-primary">alunos</button>
               </div>
             </td>
-          </tr>
         </tbody>
       </table>
     </div>

@@ -58,6 +58,11 @@ export class AlunosComponent implements OnInit, OnDestroy {
     this.professorService.getByAlunoId(id)
       .pipe(takeUntil(this.unsubscriber))
       .subscribe((professores: Professor[]) => {
+        professores.forEach(p => {
+            p.subject.forEach(s =>{
+              p.profSubjectName = s.name;
+            });
+        });
         this.profsAlunos = professores;
         this.modalRef = this.modalService.show(template);
       }, (error: any) => {
@@ -71,15 +76,15 @@ export class AlunosComponent implements OnInit, OnDestroy {
   criarForm() {
     this.alunoForm = this.fb.group({
       id: [0],
-      nome: ['', Validators.required],
-      sobrenome: ['', Validators.required],
-      telefone: ['', Validators.required],
-      ativo: []
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      status: []
     });
   }
 
   trocarEstado(aluno: Aluno) {
-    this.alunoService.trocarEstado(aluno.id, !aluno.ativo)
+    this.alunoService.trocarEstado(aluno.id, !aluno.status)
       .pipe(takeUntil(this.unsubscriber))
       .subscribe(
         (resp) => {

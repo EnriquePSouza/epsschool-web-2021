@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfessorService {
 
-  baseURL = `${environment.mainUrlAPI}professor`;
+  baseURL = `${environment.mainUrlAPI}teacher`;
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +24,7 @@ export class ProfessorService {
   }
 
   getByAlunoId(id: number): Observable<Professor[]> {
-    return this.http.get<Professor[]>(`${this.baseURL}/ByAluno/${id}`);
+    return this.http.get<Professor[]>(`${this.baseURL}/ByStudent/${id}`);
   }
 
   post(professor: Professor) {

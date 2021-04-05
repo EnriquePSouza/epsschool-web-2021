@@ -9,6 +9,9 @@ import { takeUntil } from 'rxjs/operators';
 import { Professor } from 'src/app/models/Professor';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { Aluno } from 'src/app/models/Aluno';
+import { Course } from 'src/app/models/Course';
+import { Util } from 'src/app/util/util';
+import { CoursesSubjects } from 'src/app/models/CoursesSubjects';
 
 @Component({
   selector: 'app-professor-detalhe',
@@ -19,6 +22,7 @@ export class ProfessorDetalheComponent implements OnInit, OnDestroy {
 
   public modalRef: BsModalRef;
   public professorSelecionado: Professor;
+  public courseSubjects: CoursesSubjects[];
   public titulo = '';
   public alunosProfs: Aluno[];
   private unsubscriber = new Subject();
@@ -60,12 +64,20 @@ export class ProfessorDetalheComponent implements OnInit, OnDestroy {
     this.carregarProfessor();
   }
 
+  coursesConcat(courses: Course[]) {
+    return Util.nomeConcat(Util.removeDuplicate(courses));
+  }
+
   carregarProfessor() {
     const profId = +this.route.snapshot.paramMap.get('id');
     this.professorService.getById(profId)
       .pipe(takeUntil(this.unsubscriber))
       .subscribe((professor: Professor) => {
         this.professorSelecionado = professor;
+        professor.subject.forEach(s => {
+          this.professorSelecionado.profSubjectName = s.name;
+          this.courseSubjects = s.coursesSubjects;
+        });
         this.titulo = 'Professor: ' + this.professorSelecionado.id;
         this.toastr.success('Professor carregado com Sucesso!');
       }, (error: any) => {

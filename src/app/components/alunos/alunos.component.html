@@ -15,15 +15,15 @@
     <form [formGroup]="alunoForm">
       <div class="form-group">
         <label for="formGroupExampleInput">Nome</label>
-        <input type="text" formControlName="nome" class="form-control">
+        <input type="text" formControlName="name" class="form-control">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Sobrenome</label>
-        <input type="text" formControlName="sobrenome" class="form-control">
+        <input type="text" formControlName="surname" class="form-control">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Telefone</label>
-        <input type="text" formControlName="telefone" class="form-control">
+        <input type="text" formControlName="phoneNumber" class="form-control">
       </div>
       <div class="form-group">
         <hr>
@@ -50,17 +50,17 @@
           <td><button (click)="alunoSelect(aluno.id)" class="text-dark btn btn-sm btn-outline-warning">Detalhe</button>
           </td>
           <td scope="row">{{aluno.id}}</td>
-          <td>{{aluno.nome}}</td>
-          <td>{{aluno.telefone}}</td>
+          <td>{{aluno.name}}</td>
+          <td>{{aluno.phoneNumber}}</td>
           <td>
             <div class="btn-group">
-              <button (click)="openModal(template, aluno.id)" *ngIf="aluno.ativo"
+              <button (click)="openModal(template, aluno.id)" *ngIf="aluno.status"
                 class="btn btn-sm btn-outline-primary">Professores</button>
               <button
                 class="btn btn-sm"
-                [ngClass]="{'btn-outline-danger': aluno.ativo, 'btn-success': !aluno.ativo}"
+                [ngClass]="{'btn-outline-danger': aluno.status, 'btn-success': !aluno.status}"
                 (click)="trocarEstado(aluno)">
-                {{ aluno.ativo ? 'Desativar' : 'Ativar'}}
+                {{ aluno.status ? 'Desativar' : 'Ativar'}}
               </button>
             </div>
           </td>

@@ -1,7 +1,7 @@
 export class Aluno {
   id: number;
-  nome: string;
-  sobrenome: string;
-  telefone: number;
-  ativo: boolean;
+  name: string;
+  surname: string;
+  phoneNumber: number;
+  status: boolean;
 }

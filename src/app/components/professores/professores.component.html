@@ -8,7 +8,7 @@
         <th scope="col">#</th>
         <th scope="col">Nome</th>
         <th scope="col">Disciplina</th>
-        <th scope="col">Curso</th>
+        <th scope="col">Cursos</th>
       </tr>
     </thead>
     <tbody>
@@ -17,9 +17,9 @@
           <a [routerLink]="['/professor/', prof.id]" class="text-dark btn btn-sm btn-outline-warning">Detalhe</a>
         </td>
         <th scope="row">{{prof.id}}</th>
-        <td>{{prof.nome}}</td>
-        <td>{{prof.allProfDisciplinas}}</td>
-        <td>TODO - Carregar os Cursos aqui sem dobrar</td>
+        <td>{{prof.name}}</td>
+        <td>{{prof.profSubjectName}}</td>
+        <td>{{prof.allProfCourses}}</td>
       </tr>
     </tbody>
   </table>

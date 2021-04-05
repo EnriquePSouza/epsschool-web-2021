@@ -11,6 +11,8 @@ import { Disciplina } from '../../models/Disciplina';
 import { Router } from '@angular/router';
 import { Aluno } from '../../models/Aluno';
 import { AlunoService } from '../../services/aluno.service';
+import { Course } from 'src/app/models/Course';
+import { CoursesSubjects } from 'src/app/models/CoursesSubjects';
 
 @Component({
   selector: 'app-professores',
@@ -38,7 +40,10 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscriber))
       .subscribe((professores: Professor[]) => {
         professores.forEach(p => {
-          p.allProfDisciplinas = this.disciplinaConcat(p.disciplinas);
+            p.subject.forEach(s => {
+              p.profSubjectName = s.name;
+              p.allProfCourses = this.coursesConcat(s.coursesSubjects);
+            });
         });
         this.professores = professores;
         this.toastr.success('Professores foram carregado com Sucesso!');
@@ -58,7 +63,7 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
     this.unsubscriber.complete();
   }
 
-  disciplinaConcat(disciplinas: Disciplina[]) {
-    return Util.nomeConcat(Util.removeDuplicate(disciplinas));
+  coursesConcat(coursesSubjects: CoursesSubjects[]) {
+    return Util.nomeConcat(coursesSubjects);
   }
 }

@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 })
 export class AlunoService {
 
-  baseURL = `${environment.mainUrlAPI}aluno`;
+  baseURL = `${environment.mainUrlAPI}student`;
 
   constructor(private http: HttpClient) { }
 
@@ -56,7 +56,7 @@ export class AlunoService {
   }
 
   trocarEstado(alunoId: number, ativo: boolean) {
-    return this.http.patch(`${this.baseURL}/${alunoId}/trocarEstado`, { Estado: ativo });
+    return this.http.put(`${this.baseURL}/changeStatus`, { Id: alunoId, Status: ativo });
   }
 
   patch(aluno: Aluno) {

@@ -20,10 +20,6 @@ export class ProfessoresAlunosComponent implements OnInit {
   ngOnInit() {
   }
 
-  disciplinaConcat(disciplinas: Disciplina[]) {
-    return Util.nomeConcat(Util.removeDuplicate(disciplinas));
-  }
-
   professorSelect(prof: Professor) {
     this.closeModal.emit(null);
     this.router.navigate(['/professor', prof.id]);

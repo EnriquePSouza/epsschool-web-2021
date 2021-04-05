@@ -1,7 +1,7 @@
 export class Util {
 
   static nomeConcat(items: any[]) {
-    return items.map(x => x.nome).join(',');
+    return items.map(x => x.course.name).join(', ');
   }
 
   static removeDuplicate(items: any[]){
@@ -11,7 +11,7 @@ export class Util {
         result.push(x);
       } else {
         result.forEach(i => {
-          if (i.nome != x.nome) result.push(x);
+          if (i.course.name != x.course.name) result.push(x);
         });
       }
     });
