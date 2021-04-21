@@ -37,15 +37,15 @@ export class ProfessorDetalheComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService
   ) { }
 
-  openModal(template: TemplateRef<any>, courseId: number) {
+  openModal(template: TemplateRef<any>, courseId: number): void {
     this.alunosProfessores(template, courseId);
   }
 
-  closeModal() {
+  closeModal(): void {
     this.modalRef.hide();
   }
 
-  alunosProfessores(template: TemplateRef<any>, id: number) {
+  alunosProfessores(template: TemplateRef<any>, id: number): void {
     this.spinner.show();
     this.alunoService.getByCourseId(id)
       .pipe(takeUntil(this.unsubscriber))
@@ -59,16 +59,16 @@ export class ProfessorDetalheComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.spinner.show();
     this.carregarProfessor();
   }
 
-  coursesConcat(courses: Course[]) {
+  coursesConcat(courses: Course[]): string {
     return Util.nomeConcat(Util.removeDuplicate(courses));
   }
 
-  carregarProfessor() {
+  carregarProfessor(): void {
     const profId = +this.route.snapshot.paramMap.get('id');
     this.professorService.getById(profId)
       .pipe(takeUntil(this.unsubscriber))
@@ -87,7 +87,7 @@ export class ProfessorDetalheComponent implements OnInit, OnDestroy {
     );
   }
 
-  voltar() {
+  voltar(): void {
     this.router.navigate(['/professores']);
   }
 

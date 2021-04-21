@@ -1,15 +1,15 @@
-// Imports do angular
+// Import from angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// imports de configs.
+// import configs.
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// imports dos components.
+// import components.
 import { AlunosComponent } from './components/alunos/alunos.component';
 import { AlunosProfessoresComponent } from './components/professores/alunos-professores/alunos-professores.component';
 import { ProfessoresAlunosComponent } from './components/alunos/professores-alunos/professores-alunos.component';
@@ -20,7 +20,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { TituloComponent } from './components/shared/titulo/titulo.component';
 
-// imports de modulos que não são angular.
+// imports of modules that are not from angular.
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -51,7 +51,7 @@ import { ToastrModule } from 'ngx-toastr';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     NgxSpinnerModule,
-    ToastrModule.forRoot({ // Configs padrões para usar sempre com toastr.
+    ToastrModule.forRoot({ // Default configs to always use with toastr.
       timeOut: 3500,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,

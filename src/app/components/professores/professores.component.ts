@@ -1,17 +1,12 @@
-import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Professor } from '../../models/Professor';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ProfessorService } from '../../services/professor.service';
 import { takeUntil } from 'rxjs/operators';
 import { Util } from '../../util/util';
-import { Disciplina } from '../../models/Disciplina';
 import { Router } from '@angular/router';
-import { Aluno } from '../../models/Aluno';
-import { AlunoService } from '../../services/aluno.service';
-import { Course } from 'src/app/models/Course';
 import { CoursesSubjects } from 'src/app/models/CoursesSubjects';
 
 @Component({
@@ -34,7 +29,7 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private spinner: NgxSpinnerService) { }
 
-  carregarProfessores() {
+  carregarProfessores(): void {
     this.spinner.show();
     this.professorService.getAll()
       .pipe(takeUntil(this.unsubscriber))
@@ -54,7 +49,7 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
       );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.carregarProfessores();
   }
 
@@ -63,7 +58,7 @@ export class ProfessoresComponent implements OnInit, OnDestroy {
     this.unsubscriber.complete();
   }
 
-  coursesConcat(coursesSubjects: CoursesSubjects[]) {
+  coursesConcat(coursesSubjects: CoursesSubjects[]): string {
     return Util.nomeConcat(coursesSubjects);
   }
 }

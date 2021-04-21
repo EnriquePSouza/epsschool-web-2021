@@ -32,7 +32,7 @@ export class AlunosComponent implements OnInit, OnDestroy {
   public aluno: Aluno;
   public msnDeleteAluno: string;
   public modeSave = 'post';
-  pagination: Pagination;
+  public pagination: Pagination;
 
   private unsubscriber = new Subject();
 
@@ -48,32 +48,32 @@ export class AlunosComponent implements OnInit, OnDestroy {
     this.criarForm();
   }
 
-  ngOnInit() {
-    this.pagination = {currentPage: 1, itemsPerPage: 3} as Pagination;
+  ngOnInit(): void {
+    this.pagination = { currentPage: 1, itemsPerPage: 3 } as Pagination;
     this.carregarAlunos();
   }
 
-  professoresAlunos(template: TemplateRef<any>, id: number) {
+  professoresAlunos(template: TemplateRef<any>, id: number): void {
     this.spinner.show();
     this.professorService.getByAlunoId(id)
       .pipe(takeUntil(this.unsubscriber))
       .subscribe((professores: Professor[]) => {
         professores.forEach(p => {
-            p.subject.forEach(s =>{
-              p.profSubjectName = s.name;
-            });
+          p.subject.forEach(s => {
+            p.profSubjectName = s.name;
+          });
         });
         this.profsAlunos = professores;
         this.modalRef = this.modalService.show(template);
       }, (error: any) => {
         this.toastr.error(`erro: ${error.message}`);
         console.error(error.message);
-        this.spinner.hide()
+        this.spinner.hide();
       }, () => this.spinner.hide()
       );
   }
 
-  criarForm() {
+  criarForm(): void {
     this.alunoForm = this.fb.group({
       id: [0],
       name: ['', Validators.required],
@@ -83,7 +83,7 @@ export class AlunosComponent implements OnInit, OnDestroy {
     });
   }
 
-  trocarEstado(aluno: Aluno) {
+  trocarEstado(aluno: Aluno): void {
     this.alunoService.trocarEstado(aluno.id, !aluno.status)
       .pipe(takeUntil(this.unsubscriber))
       .subscribe(
@@ -93,12 +93,12 @@ export class AlunosComponent implements OnInit, OnDestroy {
         }, (error: any) => {
           this.toastr.error(`Erro: Aluno não pode ser salvo!`);
           console.error(error);
-          this.spinner.hide()
+          this.spinner.hide();
         }, () => this.spinner.hide()
       );
   }
 
-  saveAluno() {
+  saveAluno(): void {
     if (this.alunoForm.valid) {
       this.spinner.show();
 
@@ -117,14 +117,14 @@ export class AlunosComponent implements OnInit, OnDestroy {
           }, (error: any) => {
             this.toastr.error(`Erro: Aluno não pode ser salvo!`);
             console.error(error);
-            this.spinner.hide()
+            this.spinner.hide();
           }, () => this.spinner.hide()
         );
 
     }
   }
 
-  carregarAlunos() {
+  carregarAlunos(): void {
     const alunoId = +this.route.snapshot.paramMap.get('id');
 
     this.spinner.show();
@@ -142,7 +142,7 @@ export class AlunosComponent implements OnInit, OnDestroy {
       }, (error: any) => {
         this.toastr.error('Alunos não carregados!');
         console.error(error);
-        this.spinner.hide()
+        this.spinner.hide();
       }, () => this.spinner.hide()
       );
   }
@@ -152,7 +152,7 @@ export class AlunosComponent implements OnInit, OnDestroy {
     this.carregarAlunos();
   }
 
-  alunoSelect(alunoId: number) {
+  alunoSelect(alunoId: number): void {
     this.modeSave = 'patch';
     this.alunoService.getById(alunoId).subscribe(
       (alunoReturn) => {
@@ -162,21 +162,21 @@ export class AlunosComponent implements OnInit, OnDestroy {
       (error) => {
         this.toastr.error('Alunos não carregados!');
         console.error(error);
-        this.spinner.hide()
+        this.spinner.hide();
       },
       () => this.spinner.hide()
     );
   }
 
-  voltar() {
+  voltar(): void {
     this.alunoSelecionado = null;
   }
 
-  openModal(template: TemplateRef<any>, alunoId: number) {
+  openModal(template: TemplateRef<any>, alunoId: number): void {
     this.professoresAlunos(template, alunoId);
   }
 
-  closeModal() {
+  closeModal(): void {
     this.modalRef.hide();
   }
 

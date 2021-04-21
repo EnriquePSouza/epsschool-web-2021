@@ -27,16 +27,16 @@ export class ProfessorService {
     return this.http.get<Professor[]>(`${this.baseURL}/ByStudent/${id}`);
   }
 
-  post(professor: Professor) {
-    return this.http.post(this.baseURL, Professor);
+  post(professor: Professor): Observable<Professor> {
+    return this.http.post<Professor>(this.baseURL, Professor);
   }
 
-  put(professor: Professor) {
-    return this.http.put(`${this.baseURL}/${professor.id}`, Professor);
+  put(professor: Professor): Observable<Professor> {
+    return this.http.put<Professor>(`${this.baseURL}/${professor.id}`, Professor);
   }
 
-  delete(id: number) {
-    return this.http.delete(`${this.baseURL}/${id}`);
+  delete(id: number): Observable<Professor> {
+    return this.http.delete<Professor>(`${this.baseURL}/${id}`);
   }
 
 }

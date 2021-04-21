@@ -36,7 +36,7 @@ export class AlunoService {
           }
           return paginatedResult;
         })
-      )
+      );
   }
 
   getById(id: number): Observable<Aluno> {
@@ -47,24 +47,25 @@ export class AlunoService {
     return this.http.get<Aluno[]>(`${this.baseURL}/ByCourse/${id}`);
   }
 
-  post(aluno: Aluno) {
-    return this.http.post(this.baseURL, aluno);
+  // TODO - Make for this methods - observables too.
+  post(aluno: Aluno): Observable<Aluno> {
+    return this.http.post<Aluno>(this.baseURL, aluno);
   }
 
-  put(aluno: Aluno) {
-    return this.http.put(`${this.baseURL}/${aluno.id}`, aluno);
+  put(aluno: Aluno): Observable<Aluno> {
+    return this.http.put<Aluno>(`${this.baseURL}/${aluno.id}`, aluno);
   }
 
-  trocarEstado(alunoId: number, ativo: boolean) {
-    return this.http.put(`${this.baseURL}/changeStatus`, { Id: alunoId, Status: ativo });
+  trocarEstado(alunoId: number, ativo: boolean): Observable<Aluno> {
+    return this.http.put<Aluno>(`${this.baseURL}/changeStatus`, { Id: alunoId, Status: ativo });
   }
 
-  patch(aluno: Aluno) {
-    return this.http.patch(`${this.baseURL}/${aluno.id}`, aluno);
+  patch(aluno: Aluno): Observable<Aluno> {
+    return this.http.patch<Aluno>(`${this.baseURL}/${aluno.id}`, aluno);
   }
 
-  delete(id: number) {
-    return this.http.delete(`${this.baseURL}/${id}`);
+  delete(id: number): Observable<Aluno> {
+    return this.http.delete<Aluno>(`${this.baseURL}/${id}`);
   }
 
 }

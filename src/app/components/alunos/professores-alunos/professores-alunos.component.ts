@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Professor } from 'src/app/models/Professor';
-import { Disciplina } from 'src/app/models/Disciplina';
-import { Util } from 'src/app/util/util';
 
 @Component({
   selector: 'app-professores-alunos',
@@ -17,10 +15,10 @@ export class ProfessoresAlunosComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  professorSelect(prof: Professor) {
+  professorSelect(prof: Professor): void {
     this.closeModal.emit(null);
     this.router.navigate(['/professor', prof.id]);
   }

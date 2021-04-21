@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Aluno } from 'src/app/models/Aluno';
-import { Util } from 'src/app/util/util';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,10 +14,10 @@ export class AlunosProfessoresComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  alunoSelect(id: number) {
+  alunoSelect(id: number): void {
     this.closeModal.emit(null);
     this.router.navigate(['/alunos', id]);
   }
